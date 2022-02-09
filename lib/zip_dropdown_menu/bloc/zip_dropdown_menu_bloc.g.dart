@@ -13,11 +13,6 @@ ZipDropdownMenuState _$ZipDropdownMenuStateFromJson(
       json,
       ($checkedConvert) {
         final val = ZipDropdownMenuState(
-          status: $checkedConvert(
-              'status',
-              (v) =>
-                  $enumDecodeNullable(_$ZipDropdownMenuStatusEnumMap, v) ??
-                  ZipDropdownMenuStatus.initial),
           city: $checkedConvert('city', (v) => v as String? ?? '臺北市'),
           district: $checkedConvert('district', (v) => v as String? ?? '中正區'),
           zipCode: $checkedConvert('zip_code', (v) => v as String? ?? '100'),
@@ -51,15 +46,8 @@ ZipDropdownMenuState _$ZipDropdownMenuStateFromJson(
 Map<String, dynamic> _$ZipDropdownMenuStateToJson(
         ZipDropdownMenuState instance) =>
     <String, dynamic>{
-      'status': _$ZipDropdownMenuStatusEnumMap[instance.status],
       'city': instance.city,
       'district': instance.district,
       'zip_code': instance.zipCode,
       'current_districts': instance.currentDistricts,
     };
-
-const _$ZipDropdownMenuStatusEnumMap = {
-  ZipDropdownMenuStatus.initial: 'initial',
-  ZipDropdownMenuStatus.success: 'success',
-  ZipDropdownMenuStatus.failure: 'failure',
-};

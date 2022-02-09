@@ -1,17 +1,8 @@
 part of 'zip_dropdown_menu_bloc.dart';
 
-enum ZipDropdownMenuStatus { initial, success, failure }
-
-extension ZipDropdownMenuStatusX on ZipDropdownMenuStatus {
-  bool get isInitial => this == ZipDropdownMenuStatus.initial;
-  bool get isSuccess => this == ZipDropdownMenuStatus.success;
-  bool get isFailure => this == ZipDropdownMenuStatus.failure;
-}
-
 @JsonSerializable()
 class ZipDropdownMenuState extends Equatable {
   const ZipDropdownMenuState({
-    this.status = ZipDropdownMenuStatus.initial,
     this.city = '臺北市',
     this.district = '中正區',
     this.zipCode = '100',
@@ -31,21 +22,18 @@ class ZipDropdownMenuState extends Equatable {
     ],
   });
 
-  final ZipDropdownMenuStatus status;
   final String city;
   final String district;
   final String zipCode;
   final List<String> currentDistricts;
 
   ZipDropdownMenuState copyWith({
-    ZipDropdownMenuStatus? status,
     String? city,
     String? district,
     String? zipCode,
     List<String>? currentDistricts,
   }) {
     return ZipDropdownMenuState(
-      status: status ?? this.status,
       city: city ?? this.city,
       district: district ?? this.district,
       zipCode: zipCode ?? this.zipCode,
@@ -58,5 +46,5 @@ class ZipDropdownMenuState extends Equatable {
   Map<String, dynamic> toJson() => _$ZipDropdownMenuStateToJson(this);
 
   @override
-  List<Object> get props => [status, city, district, currentDistricts];
+  List<Object> get props => [city, district, currentDistricts];
 }

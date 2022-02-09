@@ -21,7 +21,6 @@ class ZipDropdownMenuBloc
   void _onCityChanged(CityChanged event, Emitter<ZipDropdownMenuState> emit) {
     final currentDistricts = TaiwanZip.getDistricts(event.city);
     emit(state.copyWith(
-        status: ZipDropdownMenuStatus.success,
         city: event.city,
         district: currentDistricts[0],
         zipCode: TaiwanZip.toZip(event.city + currentDistricts[0]),
@@ -31,7 +30,6 @@ class ZipDropdownMenuBloc
   void _onDistrictChanged(
       DistrictChanged event, Emitter<ZipDropdownMenuState> emit) {
     emit(state.copyWith(
-        status: ZipDropdownMenuStatus.success,
         district: event.district,
         zipCode: TaiwanZip.toZip(state.city + event.district)));
   }
