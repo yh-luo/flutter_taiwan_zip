@@ -33,7 +33,7 @@ class ZipDropdownMenuView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.ideographic,
       children: <Widget>[
-        zipWidget ?? const ZipText(),
+        zipWidget ?? const ZipField(),
         cityWidget ?? const CityDropdownButton(),
         districtWidget ?? const DistrictDropdownButton(),
       ],
@@ -41,18 +41,18 @@ class ZipDropdownMenuView extends StatelessWidget {
   }
 }
 
-class ZipText extends StatelessWidget {
-  const ZipText({Key? key}) : super(key: key);
+class ZipField extends StatelessWidget {
+  const ZipField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ZipDropdownMenuBloc, ZipDropdownMenuState>(
-      buildWhen: (previous, current) => previous.zipCode != current.zipCode,
       builder: (context, state) {
         return Padding(
           padding: padding,
           child: Text(
             state.zipCode,
+            key: const Key('ZipDropdownMenuView_zip'),
             style: const TextStyle(
               fontSize: 16,
             ),
@@ -75,6 +75,7 @@ class CityDropdownButton extends StatelessWidget {
           padding: padding,
           child: DropdownButton<String>(
             value: state.city,
+            key: const Key('ZipDropdownMenuView_city'),
             elevation: 12,
             onChanged: (String? value) {
               context.read<ZipDropdownMenuBloc>().add(CityChanged(value!));
@@ -108,6 +109,7 @@ class DistrictDropdownButton extends StatelessWidget {
           padding: padding,
           child: DropdownButton<String>(
             value: state.district,
+            key: const Key('ZipDropdownMenuView_district'),
             elevation: 12,
             onChanged: (String? value) {
               context.read<ZipDropdownMenuBloc>().add(DistrictChanged(value!));
