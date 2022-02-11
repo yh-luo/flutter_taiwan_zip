@@ -6,13 +6,23 @@ import '../zip_dropdown_menu.dart';
 const EdgeInsets padding = EdgeInsets.all(5.0);
 
 class ZipDropdownMenu extends StatelessWidget {
-  const ZipDropdownMenu({Key? key}) : super(key: key);
+  const ZipDropdownMenu(
+      {this.zipWidget, this.cityWidget, this.districtWidget, Key? key})
+      : super(key: key);
+
+  final Widget? zipWidget;
+  final Widget? cityWidget;
+  final Widget? districtWidget;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ZipDropdownMenuBloc(),
-      child: const ZipDropdownMenuView(),
+      child: ZipDropdownMenuView(
+        zipWidget: zipWidget,
+        cityWidget: cityWidget,
+        districtWidget: districtWidget,
+      ),
     );
   }
 }
