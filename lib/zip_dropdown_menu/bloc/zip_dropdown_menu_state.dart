@@ -1,6 +1,5 @@
 part of 'zip_dropdown_menu_bloc.dart';
 
-@JsonSerializable()
 class ZipDropdownMenuState extends Equatable {
   const ZipDropdownMenuState({
     this.city = '臺北市',

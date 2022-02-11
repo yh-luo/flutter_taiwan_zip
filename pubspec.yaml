@@ -9,12 +9,10 @@ environment:
 dependencies:
   bloc: ^8.0.2
   bloc_test: ^9.0.2
-  build_runner: ^2.1.7
   equatable: ^2.0.3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
-  json_annotation: ^4.4.0
 
   taiwan_zip:
     path: packages/taiwan_zip
@@ -23,7 +21,6 @@ dev_dependencies:
   flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.1.4
   
 flutter:
   uses-material-design: true
