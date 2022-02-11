@@ -41,10 +41,6 @@ class ZipDropdownMenuState extends Equatable {
     );
   }
 
-  factory ZipDropdownMenuState.fromJson(Map<String, dynamic> json) =>
-      _$ZipDropdownMenuStateFromJson(json);
-  Map<String, dynamic> toJson() => _$ZipDropdownMenuStateToJson(this);
-
   @override
   List<Object> get props => [city, district, currentDistricts];
 }

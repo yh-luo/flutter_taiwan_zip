@@ -52,7 +52,6 @@ class ZipField extends StatelessWidget {
           padding: padding,
           child: Text(
             state.zipCode,
-            key: const Key('ZipDropdownMenuView_zip'),
             style: const TextStyle(
               fontSize: 16,
             ),

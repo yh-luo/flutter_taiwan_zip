@@ -10,7 +10,6 @@ class MockZipDropdownMenuBloc
     extends MockBloc<ZipDropdownMenuEvent, ZipDropdownMenuState>
     implements ZipDropdownMenuBloc {}
 
-const _zipKey = Key('ZipDropdownMenuView_zip');
 const _cityKey = Key('ZipDropdownMenuView_city');
 const _districtKey = Key('ZipDropdownMenuView_district');
 

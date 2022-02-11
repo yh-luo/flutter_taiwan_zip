@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:taiwan_zip/taiwan_zip.dart';
 
-part 'zip_dropdown_menu_bloc.g.dart';
 part 'zip_dropdown_menu_event.dart';
 part 'zip_dropdown_menu_state.dart';
 
