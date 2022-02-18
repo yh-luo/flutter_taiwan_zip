@@ -41,5 +41,5 @@ class ZipDropdownMenuState extends Equatable {
   }
 
   @override
-  List<Object> get props => [city, district, currentDistricts];
+  List<Object> get props => [city, district, zipCode, currentDistricts];
 }

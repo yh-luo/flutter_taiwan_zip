@@ -78,7 +78,6 @@ class CityDropdownButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ZipDropdownMenuBloc, ZipDropdownMenuState>(
-      buildWhen: (previous, current) => previous.city != current.city,
       builder: (context, state) {
         return Padding(
           padding: padding,
