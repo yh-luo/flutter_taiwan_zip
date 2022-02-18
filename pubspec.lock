@@ -30,14 +30,14 @@ packages:
     source: hosted
     version: "2.8.2"
   bloc:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.0.2"
   bloc_test:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: bloc_test
       url: "https://pub.dartlang.org"
@@ -106,13 +106,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.4"
   diff_match_patch:
     dependency: transitive
     description:
@@ -121,7 +114,7 @@ packages:
     source: hosted
     version: "0.4.1"
   equatable:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: equatable
       url: "https://pub.dartlang.org"
@@ -147,7 +140,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_bloc:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
@@ -160,13 +153,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
-  flutter_taiwan_zip:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "0.1.0+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -388,7 +374,7 @@ packages:
     source: hosted
     version: "1.1.0"
   taiwan_zip:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: taiwan_zip
       url: "https://pub.dartlang.org"
@@ -472,5 +458,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.16.0 <3.0.0"
+  dart: ">=2.16.0-100.0.dev <3.0.0"
   flutter: ">=1.16.0"

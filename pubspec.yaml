@@ -1,6 +1,6 @@
 name: flutter_taiwan_zip
 description: Dropdown menu for zip code
-version: 0.1.0+1
+version: 0.1.0
 publish_to: none
 
 environment:
@@ -13,9 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
-
-  taiwan_zip:
-    path: packages/taiwan_zip
+  taiwan_zip: ^0.2.0
 
 dev_dependencies:
   flutter_lints: ^1.0.4

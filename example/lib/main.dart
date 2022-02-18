@@ -142,6 +142,8 @@ class CustomizedMenu extends StatelessWidget {
             elevation: 12,
             onChanged: (String? value) {
               context.read<ZipDropdownMenuBloc>().add(DistrictChanged(value!));
+              debugPrint('District: ${state.city + value}'
+                  ', zip code: ${state.zipCode}');
             },
             items: _buildDistrictItems(context),
           ),
