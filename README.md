@@ -14,43 +14,4 @@
 跟一般 stateless widget 一樣的用法！
 * `example/` 內有自定義選單的範例
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_taiwan_zip/flutter_taiwan_zip.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'flutter_taiwan_zip',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Taiwan Zip Code'),
-      ),
-      body: const Padding(
-        padding: EdgeInsets.all(20.0),
-        child: ZipDropdownMenu(),
-      ),
-    );
-  }
-```
+![demo](resources/demo.gif)
