@@ -45,31 +45,21 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: BlocProvider.value(
-                value: zipDropdownMenuBloc, child: ZipDropdownMenuView()),
+              value: zipDropdownMenuBloc,
+              child: ZipDropdownMenuView(),
+            ),
           ),
         ),
       );
 
+      // cities are rendered
       expect(find.text(cities[0]), findsOneWidget);
-    });
-
-    testWidgets('renders correct zip', (tester) async {
-      final state = ZipDropdownMenuState();
-      when(() => zipDropdownMenuBloc.cities).thenReturn(cities);
-      when(() => zipDropdownMenuBloc.state).thenReturn(state);
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: BlocProvider.value(
-                value: zipDropdownMenuBloc, child: ZipDropdownMenuView()),
-          ),
-        ),
-      );
-
-      final dropdown = find.byKey(_districtKey);
-      await tester.tap(dropdown);
-      await tester.pumpAndSettle();
-
+      expect(find.text(cities[1]), findsOneWidget);
+      // current districts are rendered
+      expect(find.text(state.currentDistricts[0]), findsOneWidget);
+      // district is rendered
+      expect(find.text(state.district), findsOneWidget);
+      // zipCode is rendered
       expect(find.text(state.zipCode), findsOneWidget);
     });
 
