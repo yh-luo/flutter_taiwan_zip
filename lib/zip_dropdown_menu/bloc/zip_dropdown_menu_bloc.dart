@@ -14,7 +14,7 @@ class ZipDropdownMenuBloc
 
   final TaiwanZip _taiwanZip = TaiwanZip();
 
-  get cities => _taiwanZip.cities;
+  List<String> get cities => _taiwanZip.cities;
 
   void _onCityChanged(CityChanged event, Emitter<ZipDropdownMenuState> emit) {
     final currentDistricts = TaiwanZip.getDistricts(event.city);

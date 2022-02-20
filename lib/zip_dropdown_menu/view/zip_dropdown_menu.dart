@@ -56,18 +56,19 @@ class ZipField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ZipDropdownMenuBloc, ZipDropdownMenuState>(
-      builder: (context, state) {
-        return Padding(
-          padding: padding,
-          child: Text(
+    return Padding(
+      padding: padding,
+      child: BlocBuilder<ZipDropdownMenuBloc, ZipDropdownMenuState>(
+        buildWhen: (previous, current) => previous.zipCode != current.zipCode,
+        builder: (context, state) {
+          return Text(
             state.zipCode,
             style: const TextStyle(
               fontSize: 16,
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
@@ -77,26 +78,26 @@ class CityDropdownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ZipDropdownMenuBloc, ZipDropdownMenuState>(
-      builder: (context, state) {
-        return Padding(
-          padding: padding,
-          child: DropdownButton<String>(
+    return Padding(
+      padding: padding,
+      child: BlocBuilder<ZipDropdownMenuBloc, ZipDropdownMenuState>(
+        buildWhen: (previous, current) => previous.city != current.city,
+        builder: (context, state) {
+          return DropdownButton<String>(
             value: state.city,
             key: const Key('ZipDropdownMenuView_city'),
             elevation: 12,
             onChanged: (String? value) {
               context.read<ZipDropdownMenuBloc>().add(CityChanged(value!));
             },
-            items: _buildItems(context),
-          ),
-        );
-      },
+            items: _buildItems(context.read<ZipDropdownMenuBloc>().cities),
+          );
+        },
+      ),
     );
   }
 
-  List<DropdownMenuItem<String>> _buildItems(BuildContext context) {
-    final cities = context.read<ZipDropdownMenuBloc>().cities;
+  List<DropdownMenuItem<String>> _buildItems(List<String> cities) {
     return cities.map<DropdownMenuItem<String>>((String value) {
       return DropdownMenuItem<String>(
         value: value,
@@ -111,27 +112,27 @@ class DistrictDropdownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ZipDropdownMenuBloc, ZipDropdownMenuState>(
-      builder: (context, state) {
-        return Padding(
-          padding: padding,
-          child: DropdownButton<String>(
+    return Padding(
+      padding: padding,
+      child: BlocBuilder<ZipDropdownMenuBloc, ZipDropdownMenuState>(
+        buildWhen: (previous, current) => previous.district != current.district,
+        builder: (context, state) {
+          return DropdownButton<String>(
             value: state.district,
             key: const Key('ZipDropdownMenuView_district'),
             elevation: 12,
             onChanged: (String? value) {
               context.read<ZipDropdownMenuBloc>().add(DistrictChanged(value!));
             },
-            items: _buildItems(context),
-          ),
-        );
-      },
+            items: _buildItems(
+                context.read<ZipDropdownMenuBloc>().state.currentDistricts),
+          );
+        },
+      ),
     );
   }
 
-  List<DropdownMenuItem<String>> _buildItems(BuildContext context) {
-    final districts =
-        context.read<ZipDropdownMenuBloc>().state.currentDistricts;
+  List<DropdownMenuItem<String>> _buildItems(List<String> districts) {
     return districts.map<DropdownMenuItem<String>>((String value) {
       return DropdownMenuItem<String>(
         value: value,
