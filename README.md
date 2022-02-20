@@ -2,7 +2,7 @@
 
 ## 特色
 
-核心 package 為 [`taiwan_zip`](https://github.com/yh-luo/taiwan_zip)，`flutter_taiwan_zip` 提供了基於 [BLoC](https://bloclibrary.dev/#/) 建構的下拉式選單。
+核心 package 為 `taiwan_zip` ([repository](https://github.com/yh-luo/taiwan_zip), [pub.dev](https://pub.dev/packages/taiwan_zip))，`flutter_taiwan_zip` 提供了基於 [BLoC](https://bloclibrary.dev/#/) 建構的下拉式選單。
 
 * 預設的下拉式選單，供使用者選擇縣市與行政區
 * 根據使用者所選的縣市、行政區，回傳對應的郵遞區號
