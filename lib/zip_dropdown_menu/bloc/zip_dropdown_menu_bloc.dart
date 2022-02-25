@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:taiwan_zip/taiwan_zip.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,15 +9,16 @@ part 'zip_dropdown_menu_state.dart';
 class ZipDropdownMenuBloc
     extends Bloc<ZipDropdownMenuEvent, ZipDropdownMenuState> {
   ZipDropdownMenuBloc() : super(const ZipDropdownMenuState()) {
-    on<CityChanged>(_onCityChanged);
-    on<DistrictChanged>(_onDistrictChanged);
+    on<ZipDropdownMenuCityChanged>(_onCityChanged);
+    on<ZipDropdownMenuDistrictChanged>(_onDistrictChanged);
   }
 
   final TaiwanZip _taiwanZip = TaiwanZip();
 
   List<String> get cities => _taiwanZip.cities;
 
-  void _onCityChanged(CityChanged event, Emitter<ZipDropdownMenuState> emit) {
+  void _onCityChanged(
+      ZipDropdownMenuCityChanged event, Emitter<ZipDropdownMenuState> emit) {
     final currentDistricts = TaiwanZip.getDistricts(event.city);
     emit(state.copyWith(
         city: event.city,
@@ -27,8 +27,8 @@ class ZipDropdownMenuBloc
         currentDistricts: currentDistricts));
   }
 
-  void _onDistrictChanged(
-      DistrictChanged event, Emitter<ZipDropdownMenuState> emit) {
+  void _onDistrictChanged(ZipDropdownMenuDistrictChanged event,
+      Emitter<ZipDropdownMenuState> emit) {
     emit(state.copyWith(
         district: event.district,
         zipCode: TaiwanZip.toZip(state.city + event.district)));

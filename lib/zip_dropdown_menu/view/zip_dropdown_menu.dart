@@ -88,7 +88,9 @@ class CityDropdownButton extends StatelessWidget {
             key: const Key('ZipDropdownMenuView_city'),
             elevation: 12,
             onChanged: (String? value) {
-              context.read<ZipDropdownMenuBloc>().add(CityChanged(value!));
+              context
+                  .read<ZipDropdownMenuBloc>()
+                  .add(ZipDropdownMenuCityChanged(value!));
             },
             items: _buildItems(context.read<ZipDropdownMenuBloc>().cities),
           );
@@ -122,7 +124,9 @@ class DistrictDropdownButton extends StatelessWidget {
             key: const Key('ZipDropdownMenuView_district'),
             elevation: 12,
             onChanged: (String? value) {
-              context.read<ZipDropdownMenuBloc>().add(DistrictChanged(value!));
+              context
+                  .read<ZipDropdownMenuBloc>()
+                  .add(ZipDropdownMenuDistrictChanged(value!));
             },
             items: _buildItems(
                 context.read<ZipDropdownMenuBloc>().state.currentDistricts),

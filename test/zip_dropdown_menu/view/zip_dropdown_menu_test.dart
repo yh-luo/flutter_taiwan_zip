@@ -85,7 +85,8 @@ void main() {
       await tester.tap(cityItem);
       await tester.pumpAndSettle();
 
-      verify(() => zipDropdownMenuBloc.add(CityChanged(city))).called(1);
+      verify(() => zipDropdownMenuBloc.add(ZipDropdownMenuCityChanged(city)))
+          .called(1);
     });
 
     testWidgets('tapping a district item invokes DistrictChanged',
@@ -111,7 +112,8 @@ void main() {
       await tester.tap(districtItem);
       await tester.pumpAndSettle();
 
-      verify(() => zipDropdownMenuBloc.add(DistrictChanged(district)))
+      verify(() =>
+              zipDropdownMenuBloc.add(ZipDropdownMenuDistrictChanged(district)))
           .called(1);
     });
   });

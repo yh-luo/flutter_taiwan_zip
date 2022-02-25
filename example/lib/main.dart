@@ -109,7 +109,9 @@ class CustomizedMenu extends StatelessWidget {
             key: const Key('ZipDropdownMenuView_city'),
             elevation: 12,
             onChanged: (String? value) {
-              context.read<ZipDropdownMenuBloc>().add(CityChanged(value!));
+              context
+                  .read<ZipDropdownMenuBloc>()
+                  .add(ZipDropdownMenuCityChanged(value!));
             },
             items: _buildCityItems(context.read<ZipDropdownMenuBloc>().cities),
           );
@@ -144,7 +146,9 @@ class CustomizedMenu extends StatelessWidget {
             key: const Key('ZipDropdownMenuView_district'),
             elevation: 12,
             onChanged: (String? value) {
-              context.read<ZipDropdownMenuBloc>().add(DistrictChanged(value!));
+              context
+                  .read<ZipDropdownMenuBloc>()
+                  .add(ZipDropdownMenuDistrictChanged(value!));
             },
             items: _buildDistrictItems(
                 context.read<ZipDropdownMenuBloc>().state.currentDistricts),

@@ -1,6 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-import 'dart:async';
-
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_taiwan_zip/flutter_taiwan_zip.dart';
 import 'package:taiwan_zip/taiwan_zip.dart';
@@ -37,7 +35,7 @@ void main() {
       blocTest<ZipDropdownMenuBloc, ZipDropdownMenuState>(
         'changes city',
         build: () => ZipDropdownMenuBloc(),
-        act: (bloc) => bloc.add(CityChanged(city)),
+        act: (bloc) => bloc.add(ZipDropdownMenuCityChanged(city)),
         expect: () => [
           isA<ZipDropdownMenuState>()
               .having((state) => state.city, 'city', city),
@@ -48,7 +46,7 @@ void main() {
         'changes districts when city changes',
         build: () => ZipDropdownMenuBloc(),
         seed: () => ZipDropdownMenuState(),
-        act: (bloc) => bloc.add(CityChanged(city)),
+        act: (bloc) => bloc.add(ZipDropdownMenuCityChanged(city)),
         expect: () => [
           isA<ZipDropdownMenuState>()
               .having((state) => state.district, 'default district', district)
@@ -69,7 +67,7 @@ void main() {
       blocTest<ZipDropdownMenuBloc, ZipDropdownMenuState>(
         'changes district',
         build: () => ZipDropdownMenuBloc(),
-        act: (bloc) => bloc.add(DistrictChanged(district)),
+        act: (bloc) => bloc.add(ZipDropdownMenuDistrictChanged(district)),
         expect: () => [
           isA<ZipDropdownMenuState>()
               .having((state) => state.city, 'city should not change', city)
@@ -79,54 +77,6 @@ void main() {
               .having((state) => state.zipCode, 'zip code', zipCode),
         ],
       );
-    });
-
-    group('whenListen to bloc', () {
-      test('correct stream of states', () {
-        final bloc = MockZipDropdownMenuBloc();
-        final states = [
-          ZipDropdownMenuState(),
-          ZipDropdownMenuState(district: '大同區', zipCode: '103'),
-        ];
-        whenListen(bloc, Stream.fromIterable(states));
-        expectLater(
-          bloc.stream,
-          emitsInOrder(states),
-        );
-      });
-    });
-  });
-
-  group('ZipDropdownMenuState', () {
-    group('copyWith', () {
-      const String city = '基隆市';
-      const String district = '仁愛區';
-      const String zipCode = '201';
-      final List<String> currentDistricts = TaiwanZip.getDistricts(city);
-      final state = ZipDropdownMenuState();
-
-      test('city', () {
-        final actual = state.copyWith(city: city);
-        expect(actual.city, city);
-        expect(actual == state, false);
-      });
-
-      test('district', () {
-        final actual = state.copyWith(district: district);
-        expect(actual.district, district);
-        expect(actual == state, false);
-      });
-      test('zipCode', () {
-        final actual = state.copyWith(zipCode: zipCode);
-        expect(actual.zipCode, zipCode);
-        expect(actual == state, false);
-      });
-
-      test('currentDistricts', () {
-        final actual = state.copyWith(currentDistricts: currentDistricts);
-        expect(actual.currentDistricts, currentDistricts);
-        expect(actual == state, false);
-      });
     });
   });
 }
