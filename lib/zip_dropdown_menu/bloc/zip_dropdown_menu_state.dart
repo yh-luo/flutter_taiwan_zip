@@ -1,11 +1,15 @@
 part of 'zip_dropdown_menu_bloc.dart';
 
-class ZipDropdownMenuState extends Equatable {
-  const ZipDropdownMenuState({
-    this.city = '臺北市',
-    this.district = '中正區',
-    this.zipCode = '100',
-    this.currentDistricts = const <String>[
+@freezed
+class ZipDropdownMenuState with _$ZipDropdownMenuState {
+  const factory ZipDropdownMenuState({
+    @Default('臺北市')
+        String city,
+    @Default('中正區')
+        String district,
+    @Default('100')
+        String zipCode,
+    @Default(<String>[
       '中正區',
       '大同區',
       '中山區',
@@ -18,28 +22,7 @@ class ZipDropdownMenuState extends Equatable {
       '內湖區',
       '南港區',
       '文山區',
-    ],
-  });
-
-  final String city;
-  final String district;
-  final String zipCode;
-  final List<String> currentDistricts;
-
-  ZipDropdownMenuState copyWith({
-    String? city,
-    String? district,
-    String? zipCode,
-    List<String>? currentDistricts,
-  }) {
-    return ZipDropdownMenuState(
-      city: city ?? this.city,
-      district: district ?? this.district,
-      zipCode: zipCode ?? this.zipCode,
-      currentDistricts: currentDistricts ?? this.currentDistricts,
-    );
-  }
-
-  @override
-  List<Object> get props => [city, district, zipCode, currentDistricts];
+    ])
+        List<String> currentDistricts,
+  }) = _ZipDropdownMenuState;
 }

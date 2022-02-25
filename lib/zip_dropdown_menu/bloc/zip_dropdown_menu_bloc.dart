@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:taiwan_zip/taiwan_zip.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'zip_dropdown_menu_bloc.freezed.dart';
 part 'zip_dropdown_menu_event.dart';
 part 'zip_dropdown_menu_state.dart';
 
