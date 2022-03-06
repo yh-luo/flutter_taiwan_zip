@@ -35,12 +35,16 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              children: const <Widget>[
-                Text(
+              children: <Widget>[
+                const Text(
                   'Default menu',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                ZipDropdownMenu(),
+                ZipDropdownMenu(
+                  onZipCodeChanged: (zipCode) {
+                    debugPrint('zip code changed to $zipCode');
+                  },
+                ),
               ],
             ),
           ),
@@ -111,7 +115,7 @@ class CustomizedMenu extends StatelessWidget {
             onChanged: (String? value) {
               context
                   .read<ZipDropdownMenuBloc>()
-                  .add(ZipDropdownMenuCityChanged(value!));
+                  .add(ZipDropdownMenuEvent.cityChanged(value!));
             },
             items: _buildCityItems(context.read<ZipDropdownMenuBloc>().cities),
           );
@@ -148,7 +152,7 @@ class CustomizedMenu extends StatelessWidget {
             onChanged: (String? value) {
               context
                   .read<ZipDropdownMenuBloc>()
-                  .add(ZipDropdownMenuDistrictChanged(value!));
+                  .add(ZipDropdownMenuEvent.districtChanged(value!));
             },
             items: _buildDistrictItems(
                 context.read<ZipDropdownMenuBloc>().state.currentDistricts),

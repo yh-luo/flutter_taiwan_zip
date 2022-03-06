@@ -35,7 +35,7 @@ void main() {
       blocTest<ZipDropdownMenuBloc, ZipDropdownMenuState>(
         'changes city',
         build: () => ZipDropdownMenuBloc(),
-        act: (bloc) => bloc.add(ZipDropdownMenuCityChanged(city)),
+        act: (bloc) => bloc.add(ZipDropdownMenuEvent.cityChanged(city)),
         expect: () => [
           isA<ZipDropdownMenuState>()
               .having((state) => state.city, 'city', city),
@@ -46,7 +46,7 @@ void main() {
         'changes districts when city changes',
         build: () => ZipDropdownMenuBloc(),
         seed: () => ZipDropdownMenuState(),
-        act: (bloc) => bloc.add(ZipDropdownMenuCityChanged(city)),
+        act: (bloc) => bloc.add(ZipDropdownMenuEvent.cityChanged(city)),
         expect: () => [
           isA<ZipDropdownMenuState>()
               .having((state) => state.district, 'default district', district)
@@ -67,7 +67,7 @@ void main() {
       blocTest<ZipDropdownMenuBloc, ZipDropdownMenuState>(
         'changes district',
         build: () => ZipDropdownMenuBloc(),
-        act: (bloc) => bloc.add(ZipDropdownMenuDistrictChanged(district)),
+        act: (bloc) => bloc.add(ZipDropdownMenuEvent.districtChanged(district)),
         expect: () => [
           isA<ZipDropdownMenuState>()
               .having((state) => state.city, 'city should not change', city)

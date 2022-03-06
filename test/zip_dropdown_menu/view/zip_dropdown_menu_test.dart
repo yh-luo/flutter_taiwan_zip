@@ -85,7 +85,8 @@ void main() {
       await tester.tap(cityItem);
       await tester.pumpAndSettle();
 
-      verify(() => zipDropdownMenuBloc.add(ZipDropdownMenuCityChanged(city)))
+      verify(() =>
+              zipDropdownMenuBloc.add(ZipDropdownMenuEvent.cityChanged(city)))
           .called(1);
     });
 
@@ -112,9 +113,8 @@ void main() {
       await tester.tap(districtItem);
       await tester.pumpAndSettle();
 
-      verify(() =>
-              zipDropdownMenuBloc.add(ZipDropdownMenuDistrictChanged(district)))
-          .called(1);
+      verify(() => zipDropdownMenuBloc
+          .add(ZipDropdownMenuEvent.districtChanged(district))).called(1);
     });
   });
 }

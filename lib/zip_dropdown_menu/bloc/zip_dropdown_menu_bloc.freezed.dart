@@ -17,14 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ZipDropdownMenuEventTearOff {
   const _$ZipDropdownMenuEventTearOff();
 
-  ZipDropdownMenuCityChanged cityChanged(String city) {
-    return ZipDropdownMenuCityChanged(
+  _CityChanged cityChanged(String city) {
+    return _CityChanged(
       city,
     );
   }
 
-  ZipDropdownMenuDistrictChanged districtChanged(String district) {
-    return ZipDropdownMenuDistrictChanged(
+  _DistrictChanged districtChanged(String district) {
+    return _DistrictChanged(
       district,
     );
   }
@@ -56,21 +56,20 @@ mixin _$ZipDropdownMenuEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ZipDropdownMenuCityChanged value) cityChanged,
-    required TResult Function(ZipDropdownMenuDistrictChanged value)
-        districtChanged,
+    required TResult Function(_CityChanged value) cityChanged,
+    required TResult Function(_DistrictChanged value) districtChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ZipDropdownMenuCityChanged value)? cityChanged,
-    TResult Function(ZipDropdownMenuDistrictChanged value)? districtChanged,
+    TResult Function(_CityChanged value)? cityChanged,
+    TResult Function(_DistrictChanged value)? districtChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ZipDropdownMenuCityChanged value)? cityChanged,
-    TResult Function(ZipDropdownMenuDistrictChanged value)? districtChanged,
+    TResult Function(_CityChanged value)? cityChanged,
+    TResult Function(_DistrictChanged value)? districtChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -94,30 +93,29 @@ class _$ZipDropdownMenuEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $ZipDropdownMenuCityChangedCopyWith<$Res> {
-  factory $ZipDropdownMenuCityChangedCopyWith(ZipDropdownMenuCityChanged value,
-          $Res Function(ZipDropdownMenuCityChanged) then) =
-      _$ZipDropdownMenuCityChangedCopyWithImpl<$Res>;
+abstract class _$CityChangedCopyWith<$Res> {
+  factory _$CityChangedCopyWith(
+          _CityChanged value, $Res Function(_CityChanged) then) =
+      __$CityChangedCopyWithImpl<$Res>;
   $Res call({String city});
 }
 
 /// @nodoc
-class _$ZipDropdownMenuCityChangedCopyWithImpl<$Res>
+class __$CityChangedCopyWithImpl<$Res>
     extends _$ZipDropdownMenuEventCopyWithImpl<$Res>
-    implements $ZipDropdownMenuCityChangedCopyWith<$Res> {
-  _$ZipDropdownMenuCityChangedCopyWithImpl(ZipDropdownMenuCityChanged _value,
-      $Res Function(ZipDropdownMenuCityChanged) _then)
-      : super(_value, (v) => _then(v as ZipDropdownMenuCityChanged));
+    implements _$CityChangedCopyWith<$Res> {
+  __$CityChangedCopyWithImpl(
+      _CityChanged _value, $Res Function(_CityChanged) _then)
+      : super(_value, (v) => _then(v as _CityChanged));
 
   @override
-  ZipDropdownMenuCityChanged get _value =>
-      super._value as ZipDropdownMenuCityChanged;
+  _CityChanged get _value => super._value as _CityChanged;
 
   @override
   $Res call({
     Object? city = freezed,
   }) {
-    return _then(ZipDropdownMenuCityChanged(
+    return _then(_CityChanged(
       city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -128,8 +126,8 @@ class _$ZipDropdownMenuCityChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ZipDropdownMenuCityChanged implements ZipDropdownMenuCityChanged {
-  const _$ZipDropdownMenuCityChanged(this.city);
+class _$_CityChanged implements _CityChanged {
+  const _$_CityChanged(this.city);
 
   @override
   final String city;
@@ -143,7 +141,7 @@ class _$ZipDropdownMenuCityChanged implements ZipDropdownMenuCityChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ZipDropdownMenuCityChanged &&
+            other is _CityChanged &&
             const DeepCollectionEquality().equals(other.city, city));
   }
 
@@ -153,10 +151,8 @@ class _$ZipDropdownMenuCityChanged implements ZipDropdownMenuCityChanged {
 
   @JsonKey(ignore: true)
   @override
-  $ZipDropdownMenuCityChangedCopyWith<ZipDropdownMenuCityChanged>
-      get copyWith =>
-          _$ZipDropdownMenuCityChangedCopyWithImpl<ZipDropdownMenuCityChanged>(
-              this, _$identity);
+  _$CityChangedCopyWith<_CityChanged> get copyWith =>
+      __$CityChangedCopyWithImpl<_CityChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -192,9 +188,8 @@ class _$ZipDropdownMenuCityChanged implements ZipDropdownMenuCityChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ZipDropdownMenuCityChanged value) cityChanged,
-    required TResult Function(ZipDropdownMenuDistrictChanged value)
-        districtChanged,
+    required TResult Function(_CityChanged value) cityChanged,
+    required TResult Function(_DistrictChanged value) districtChanged,
   }) {
     return cityChanged(this);
   }
@@ -202,8 +197,8 @@ class _$ZipDropdownMenuCityChanged implements ZipDropdownMenuCityChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ZipDropdownMenuCityChanged value)? cityChanged,
-    TResult Function(ZipDropdownMenuDistrictChanged value)? districtChanged,
+    TResult Function(_CityChanged value)? cityChanged,
+    TResult Function(_DistrictChanged value)? districtChanged,
   }) {
     return cityChanged?.call(this);
   }
@@ -211,8 +206,8 @@ class _$ZipDropdownMenuCityChanged implements ZipDropdownMenuCityChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ZipDropdownMenuCityChanged value)? cityChanged,
-    TResult Function(ZipDropdownMenuDistrictChanged value)? districtChanged,
+    TResult Function(_CityChanged value)? cityChanged,
+    TResult Function(_DistrictChanged value)? districtChanged,
     required TResult orElse(),
   }) {
     if (cityChanged != null) {
@@ -222,43 +217,39 @@ class _$ZipDropdownMenuCityChanged implements ZipDropdownMenuCityChanged {
   }
 }
 
-abstract class ZipDropdownMenuCityChanged implements ZipDropdownMenuEvent {
-  const factory ZipDropdownMenuCityChanged(String city) =
-      _$ZipDropdownMenuCityChanged;
+abstract class _CityChanged implements ZipDropdownMenuEvent {
+  const factory _CityChanged(String city) = _$_CityChanged;
 
   String get city;
   @JsonKey(ignore: true)
-  $ZipDropdownMenuCityChangedCopyWith<ZipDropdownMenuCityChanged>
-      get copyWith => throw _privateConstructorUsedError;
+  _$CityChangedCopyWith<_CityChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ZipDropdownMenuDistrictChangedCopyWith<$Res> {
-  factory $ZipDropdownMenuDistrictChangedCopyWith(
-          ZipDropdownMenuDistrictChanged value,
-          $Res Function(ZipDropdownMenuDistrictChanged) then) =
-      _$ZipDropdownMenuDistrictChangedCopyWithImpl<$Res>;
+abstract class _$DistrictChangedCopyWith<$Res> {
+  factory _$DistrictChangedCopyWith(
+          _DistrictChanged value, $Res Function(_DistrictChanged) then) =
+      __$DistrictChangedCopyWithImpl<$Res>;
   $Res call({String district});
 }
 
 /// @nodoc
-class _$ZipDropdownMenuDistrictChangedCopyWithImpl<$Res>
+class __$DistrictChangedCopyWithImpl<$Res>
     extends _$ZipDropdownMenuEventCopyWithImpl<$Res>
-    implements $ZipDropdownMenuDistrictChangedCopyWith<$Res> {
-  _$ZipDropdownMenuDistrictChangedCopyWithImpl(
-      ZipDropdownMenuDistrictChanged _value,
-      $Res Function(ZipDropdownMenuDistrictChanged) _then)
-      : super(_value, (v) => _then(v as ZipDropdownMenuDistrictChanged));
+    implements _$DistrictChangedCopyWith<$Res> {
+  __$DistrictChangedCopyWithImpl(
+      _DistrictChanged _value, $Res Function(_DistrictChanged) _then)
+      : super(_value, (v) => _then(v as _DistrictChanged));
 
   @override
-  ZipDropdownMenuDistrictChanged get _value =>
-      super._value as ZipDropdownMenuDistrictChanged;
+  _DistrictChanged get _value => super._value as _DistrictChanged;
 
   @override
   $Res call({
     Object? district = freezed,
   }) {
-    return _then(ZipDropdownMenuDistrictChanged(
+    return _then(_DistrictChanged(
       district == freezed
           ? _value.district
           : district // ignore: cast_nullable_to_non_nullable
@@ -269,9 +260,8 @@ class _$ZipDropdownMenuDistrictChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ZipDropdownMenuDistrictChanged
-    implements ZipDropdownMenuDistrictChanged {
-  const _$ZipDropdownMenuDistrictChanged(this.district);
+class _$_DistrictChanged implements _DistrictChanged {
+  const _$_DistrictChanged(this.district);
 
   @override
   final String district;
@@ -285,7 +275,7 @@ class _$ZipDropdownMenuDistrictChanged
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ZipDropdownMenuDistrictChanged &&
+            other is _DistrictChanged &&
             const DeepCollectionEquality().equals(other.district, district));
   }
 
@@ -295,9 +285,8 @@ class _$ZipDropdownMenuDistrictChanged
 
   @JsonKey(ignore: true)
   @override
-  $ZipDropdownMenuDistrictChangedCopyWith<ZipDropdownMenuDistrictChanged>
-      get copyWith => _$ZipDropdownMenuDistrictChangedCopyWithImpl<
-          ZipDropdownMenuDistrictChanged>(this, _$identity);
+  _$DistrictChangedCopyWith<_DistrictChanged> get copyWith =>
+      __$DistrictChangedCopyWithImpl<_DistrictChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -333,9 +322,8 @@ class _$ZipDropdownMenuDistrictChanged
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ZipDropdownMenuCityChanged value) cityChanged,
-    required TResult Function(ZipDropdownMenuDistrictChanged value)
-        districtChanged,
+    required TResult Function(_CityChanged value) cityChanged,
+    required TResult Function(_DistrictChanged value) districtChanged,
   }) {
     return districtChanged(this);
   }
@@ -343,8 +331,8 @@ class _$ZipDropdownMenuDistrictChanged
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ZipDropdownMenuCityChanged value)? cityChanged,
-    TResult Function(ZipDropdownMenuDistrictChanged value)? districtChanged,
+    TResult Function(_CityChanged value)? cityChanged,
+    TResult Function(_DistrictChanged value)? districtChanged,
   }) {
     return districtChanged?.call(this);
   }
@@ -352,8 +340,8 @@ class _$ZipDropdownMenuDistrictChanged
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ZipDropdownMenuCityChanged value)? cityChanged,
-    TResult Function(ZipDropdownMenuDistrictChanged value)? districtChanged,
+    TResult Function(_CityChanged value)? cityChanged,
+    TResult Function(_DistrictChanged value)? districtChanged,
     required TResult orElse(),
   }) {
     if (districtChanged != null) {
@@ -363,14 +351,13 @@ class _$ZipDropdownMenuDistrictChanged
   }
 }
 
-abstract class ZipDropdownMenuDistrictChanged implements ZipDropdownMenuEvent {
-  const factory ZipDropdownMenuDistrictChanged(String district) =
-      _$ZipDropdownMenuDistrictChanged;
+abstract class _DistrictChanged implements ZipDropdownMenuEvent {
+  const factory _DistrictChanged(String district) = _$_DistrictChanged;
 
   String get district;
   @JsonKey(ignore: true)
-  $ZipDropdownMenuDistrictChangedCopyWith<ZipDropdownMenuDistrictChanged>
-      get copyWith => throw _privateConstructorUsedError;
+  _$DistrictChangedCopyWith<_DistrictChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
