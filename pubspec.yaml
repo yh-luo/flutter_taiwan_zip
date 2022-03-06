@@ -1,6 +1,6 @@
 name: flutter_taiwan_zip
 description: Dropdown menu for querying zip codes in Taiwan.
-version: 0.2.0
+version: 0.3.0
 publish_to: none
 
 environment:
