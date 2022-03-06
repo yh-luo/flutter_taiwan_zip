@@ -1,5 +1,22 @@
-# 0.2.0
+# 0.3.0
 
+**New**
+
+* ZipDropdownMenu now accepts a `onZipCodeChanged` callback for changes of zip code. Zip codes can be used outside of the widget/bloc like:
+    ```dart
+    ZipDropdownMenu(
+        onZipCodeChanged: (zipCode) {
+          debugPrint('zip code changed to $zipCode');
+        },
+    )
+    ```
+
+**Enhancement**
+
+* Migrated to [freezed](https://pub.dev/packages/freezed)
+* 100% coverage
+
+# 0.2.0
 
 **Enhancement**
 

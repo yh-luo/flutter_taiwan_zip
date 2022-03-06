@@ -5,6 +5,15 @@ import '../zip_dropdown_menu.dart';
 
 const EdgeInsets padding = EdgeInsets.all(5.0);
 
+/// A dropdown menu for finding zip code based on user interactions
+///
+/// The widget returns the corresponding zip code after the user selects a
+/// district.
+/// `onZipCodeChanged` is called when the zip code changes. `zipWidget`,
+/// `cityWidget` and `districtWidget` provide more control over the widgets.
+/// For example, `TextButton` can be used for user interactions. When they are
+/// not specified, the default dropdown menu composes of `ZipField`,
+/// `CityDropdownButton` and `DistrictDropdownButton` is used.
 class ZipDropdownMenu extends StatelessWidget {
   const ZipDropdownMenu(
       {this.zipWidget,

@@ -17,6 +17,7 @@ class ZipDropdownMenuBloc
 
   List<String> get cities => _taiwanZip.cities;
 
+  /// event handler when the user changes the city
   void _onCityChanged(_CityChanged event, Emitter<ZipDropdownMenuState> emit) {
     final currentDistricts = TaiwanZip.getDistricts(event.city);
     emit(state.copyWith(
@@ -26,6 +27,7 @@ class ZipDropdownMenuBloc
         currentDistricts: currentDistricts));
   }
 
+  /// event handler when the user changes the district
   void _onDistrictChanged(
       _DistrictChanged event, Emitter<ZipDropdownMenuState> emit) {
     emit(state.copyWith(
