@@ -13,9 +13,7 @@ class ZipDropdownMenuBloc
     on<_DistrictChanged>(_onDistrictChanged);
   }
 
-  final TaiwanZip _taiwanZip = TaiwanZip();
-
-  List<String> get cities => _taiwanZip.cities;
+  List<String> get cities => TaiwanZip.cities;
 
   /// event handler when the user changes the city
   void _onCityChanged(_CityChanged event, Emitter<ZipDropdownMenuState> emit) {
