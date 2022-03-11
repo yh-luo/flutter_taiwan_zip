@@ -1,3 +1,11 @@
+# 0.4.0
+
+**New**
+
+* Minimum requirement of Dart SDK changed to 2.16.
+* Updated `taiwan_zip` to 0.3.0.
+* Used git lfs to manage resources.
+
 # 0.3.0
 
 **New**
