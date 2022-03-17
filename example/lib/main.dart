@@ -154,8 +154,7 @@ class CustomizedMenu extends StatelessWidget {
                   .read<ZipDropdownMenuBloc>()
                   .add(ZipDropdownMenuEvent.districtChanged(value!));
             },
-            items: _buildDistrictItems(
-                context.read<ZipDropdownMenuBloc>().state.currentDistricts),
+            items: _buildDistrictItems(state.currentDistricts),
           );
         },
       ),

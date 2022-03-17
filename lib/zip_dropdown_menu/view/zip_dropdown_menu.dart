@@ -153,8 +153,7 @@ class DistrictDropdownButton extends StatelessWidget {
                   .read<ZipDropdownMenuBloc>()
                   .add(ZipDropdownMenuEvent.districtChanged(value!));
             },
-            items: _buildItems(
-                context.read<ZipDropdownMenuBloc>().state.currentDistricts),
+            items: _buildItems(state.currentDistricts),
           );
         },
       ),
