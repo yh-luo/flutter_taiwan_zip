@@ -29,18 +29,21 @@ void main() {
           ),
         ),
       );
+
       expect(find.byType(ZipDropdownMenuView), findsOneWidget);
     });
   });
 
   group('ZipDropdownMenuView', () {
+    final state = ZipDropdownMenuState();
     const List<String> cities = ['臺北市', '新北市'];
 
-    testWidgets('renders the current ZipDropdownMenuBloc state',
-        (tester) async {
-      final state = ZipDropdownMenuState();
+    setUp(() {
       when(() => zipDropdownMenuBloc.cities).thenReturn(cities);
       when(() => zipDropdownMenuBloc.state).thenReturn(state);
+    });
+
+    testWidgets('renders ZipDropdownMenuBloc state', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -63,132 +66,188 @@ void main() {
       expect(find.text(state.zipCode), findsOneWidget);
     });
 
-    testWidgets('tapping a city item invokes CityChanged', (tester) async {
-      final state = ZipDropdownMenuState();
+    group('CityDropdownButton', () {
       const String city = '新北市';
-      when(() => zipDropdownMenuBloc.cities).thenReturn(cities);
-      when(() => zipDropdownMenuBloc.state).thenReturn(state);
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: BlocProvider.value(
-                value: zipDropdownMenuBloc, child: ZipDropdownMenuView()),
+
+      testWidgets('tapping a city item invokes CityChanged', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BlocProvider.value(
+                  value: zipDropdownMenuBloc, child: ZipDropdownMenuView()),
+            ),
           ),
-        ),
-      );
+        );
 
-      final dropdown = find.byKey(_cityKey);
-      await tester.tap(dropdown);
-      await tester.pumpAndSettle();
+        final dropdown = find.byKey(_cityKey);
+        await tester.tap(dropdown);
+        await tester.pumpAndSettle();
 
-      final cityItem = find.text(city).last;
-      await tester.tap(cityItem);
-      await tester.pumpAndSettle();
+        final cityItem = find.text(city).last;
+        await tester.tap(cityItem);
+        await tester.pumpAndSettle();
 
-      verify(() =>
-              zipDropdownMenuBloc.add(ZipDropdownMenuEvent.cityChanged(city)))
-          .called(1);
-    });
+        verify(() =>
+                zipDropdownMenuBloc.add(ZipDropdownMenuEvent.cityChanged(city)))
+            .called(1);
+      });
 
-    testWidgets('tapping a district item invokes DistrictChanged',
-        (tester) async {
-      final state = ZipDropdownMenuState();
-      const String district = '士林區';
-      when(() => zipDropdownMenuBloc.cities).thenReturn(cities);
-      when(() => zipDropdownMenuBloc.state).thenReturn(state);
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: BlocProvider.value(
-                value: zipDropdownMenuBloc, child: ZipDropdownMenuView()),
-          ),
-        ),
-      );
+      testWidgets('calls onCityChanged', (tester) async {
+        var called = false;
+        onCityChanged(String city) {
+          called = true;
+        }
 
-      final dropdown = find.byKey(_districtKey);
-      await tester.tap(dropdown);
-      await tester.pumpAndSettle();
-
-      final districtItem = find.text(district).last;
-      await tester.tap(districtItem);
-      await tester.pumpAndSettle();
-
-      verify(() => zipDropdownMenuBloc
-          .add(ZipDropdownMenuEvent.districtChanged(district))).called(1);
-    });
-
-    testWidgets('calls onZipCodeChanged', (tester) async {
-      const String district = '士林區';
-      const String zipCode = '111';
-      var called = false;
-      onZipCodeChanged(String zipCode) {
-        called = true;
-      }
-
-      when(() => zipDropdownMenuBloc.cities).thenReturn(cities);
-      whenListen(
+        whenListen(
           zipDropdownMenuBloc,
           Stream<ZipDropdownMenuState>.fromIterable([
-            ZipDropdownMenuState(),
-            ZipDropdownMenuState(district: district, zipCode: zipCode)
-          ]));
+            ZipDropdownMenuState(city: city),
+          ]),
+        );
 
-      when(() => zipDropdownMenuBloc.state).thenReturn(
-          ZipDropdownMenuState(district: district, zipCode: zipCode));
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: BlocProvider.value(
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BlocProvider.value(
                 value: zipDropdownMenuBloc,
                 child: ZipDropdownMenuView(
-                  onZipCodeChanged: onZipCodeChanged,
-                )),
+                  onCityChanged: onCityChanged,
+                ),
+              ),
+            ),
           ),
-        ),
-      );
+        );
 
-      final dropdown = find.byKey(_districtKey);
-      await tester.tap(dropdown);
-      await tester.pumpAndSettle();
-
-      final districtItem = find.text(district).last;
-      await tester.tap(districtItem);
-      await tester.pumpAndSettle();
-
-      expect(called, true);
+        expect(called, true);
+      });
     });
 
-    testWidgets('renders the correct zip code when district changes',
-        (tester) async {
+    group('DistrictDropdownButton', () {
       const String district = '士林區';
-      const String zipCode = '111';
-      when(() => zipDropdownMenuBloc.cities).thenReturn(cities);
-      whenListen(
+
+      testWidgets('tapping a district item invokes DistrictChanged',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BlocProvider.value(
+                value: zipDropdownMenuBloc,
+                child: ZipDropdownMenuView(),
+              ),
+            ),
+          ),
+        );
+
+        final dropdown = find.byKey(_districtKey);
+        await tester.tap(dropdown);
+        await tester.pumpAndSettle();
+
+        final districtItem = find.text(district).last;
+        await tester.tap(districtItem);
+        await tester.pumpAndSettle();
+
+        verify(() => zipDropdownMenuBloc
+            .add(ZipDropdownMenuEvent.districtChanged(district))).called(1);
+      });
+
+      testWidgets('calls onDistrictChanged', (tester) async {
+        var called = false;
+        onDistrictChanged(String district) {
+          called = true;
+        }
+
+        whenListen(
           zipDropdownMenuBloc,
           Stream<ZipDropdownMenuState>.fromIterable([
-            ZipDropdownMenuState(),
-            ZipDropdownMenuState(district: district, zipCode: zipCode)
-          ]));
+            ZipDropdownMenuState(district: district),
+          ]),
+        );
 
-      when(() => zipDropdownMenuBloc.state).thenReturn(
-          ZipDropdownMenuState(district: district, zipCode: zipCode));
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: BlocProvider.value(
-                value: zipDropdownMenuBloc, child: ZipDropdownMenuView()),
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BlocProvider.value(
+                value: zipDropdownMenuBloc,
+                child: ZipDropdownMenuView(
+                  onDistrictChanged: onDistrictChanged,
+                ),
+              ),
+            ),
           ),
-        ),
-      );
+        );
 
-      final dropdown = find.byKey(_districtKey);
-      await tester.tap(dropdown);
-      await tester.pumpAndSettle();
+        expect(called, true);
+      });
+    });
 
-      final districtItem = find.text(district).last;
-      await tester.tap(districtItem);
-      await tester.pumpAndSettle();
-      expect(find.text(zipCode), findsOneWidget);
+    group('ZipField', () {
+      const String district = '士林區';
+      const String zipCode = '111';
+
+      testWidgets('renders the correct zip code when district changes',
+          (tester) async {
+        whenListen(
+          zipDropdownMenuBloc,
+          Stream<ZipDropdownMenuState>.fromIterable([
+            ZipDropdownMenuState(district: district, zipCode: zipCode),
+          ]),
+        );
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BlocProvider.value(
+                  value: zipDropdownMenuBloc, child: ZipDropdownMenuView()),
+            ),
+          ),
+        );
+
+        final dropdown = find.byKey(_districtKey);
+        await tester.tap(dropdown);
+        await tester.pumpAndSettle();
+
+        final districtItem = find.text(district).last;
+        await tester.tap(districtItem);
+        await tester.pumpAndSettle();
+
+        expect(find.text(state.zipCode), findsNothing); // the default zip code
+        expect(find.text(zipCode), findsOneWidget);
+      });
+
+      testWidgets('calls onZipCodeChanged', (tester) async {
+        var called = false;
+        onZipCodeChanged(String zipCode) {
+          called = true;
+        }
+
+        whenListen(
+            zipDropdownMenuBloc,
+            Stream<ZipDropdownMenuState>.fromIterable([
+              ZipDropdownMenuState(district: district, zipCode: zipCode),
+            ]));
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BlocProvider.value(
+                  value: zipDropdownMenuBloc,
+                  child: ZipDropdownMenuView(
+                    onZipCodeChanged: onZipCodeChanged,
+                  )),
+            ),
+          ),
+        );
+
+        final dropdown = find.byKey(_districtKey);
+        await tester.tap(dropdown);
+        await tester.pumpAndSettle();
+
+        final districtItem = find.text(district).last;
+        await tester.tap(districtItem);
+        await tester.pumpAndSettle();
+
+        expect(called, true);
+      });
     });
   });
 }
