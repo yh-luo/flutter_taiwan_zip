@@ -1,5 +1,7 @@
 # flutter_taiwan_zip
 
+![coverage][coverage_badge]
+
 藉由下拉式選單輸入縣市與行政區，快速查詢臺灣現行郵遞區號。
 
 ## 特色
@@ -12,9 +14,6 @@
 * 可自定義下拉式選單
 
 ## 範例
-
-跟一般 stateless widget 一樣的用法！
-* `example/` 內有自定義選單的範例
 
 ![demo](resources/demo.gif)
 
@@ -52,17 +51,9 @@
 
 #### Q: 一定要用 bloc 才能使用嗎？
 
-理論上是，因為此專案 dependencies 包含 `bloc` ，雖然不會直接列為 dependencies，但使用後 `pubspec.lock` 會出現 `bloc` 等等 packages，不過不需要使用 bloc 設計模式也能使用此專案。
+理論上是，因為此插件 dependencies 包含 `bloc` ，雖然不會直接列為 dependencies，但使用後 `pubspec.lock` 會出現 `bloc` 等等 transitive packages 。但專案不需要使用 bloc 設計模式，也可以直接利用 callback functions 使用 `ZipDropdownMenu`。
 
-```
-  bloc:
-    dependency: transitive
-    description:
-      name: bloc
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "8.0.3"
-```
+如果不想使 dependencies 變複雜，可以使用 Dart package [taiwan_zip](https://pub.dev/packages/taiwan_zip) 來取得郵遞區號，利用 Stateful widget （或其他）完成相同目的，不需要使用此插件。請參考 `stateful_menu.dart`。
 
 #### Q: 我可以在我的商用 app 使用嗎？需要授權嗎？
 
@@ -70,4 +61,6 @@
 
 #### Q: 我想要 XXX 功能，你可以增加嗎？
 
-歡迎提 issue 討論，更新時間不定。
+可以提 issue 討論，更新時間不定。
+
+[coverage_badge]: ./coverage_badge.svg

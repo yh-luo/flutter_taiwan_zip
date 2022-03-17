@@ -1,3 +1,15 @@
+# 0.5.0
+
+**New**
+
+* `ZipDropdownMenu` now accepts `onCityChanged` and `onDistrictChanged` callback functions.
+
+**Enhancement**
+
+* Remove crufts in tests.
+* Better documentation.
+* A more detailed example.
+
 # 0.4.0
 
 **New**
@@ -10,7 +22,7 @@
 
 **New**
 
-* ZipDropdownMenu now accepts a `onZipCodeChanged` callback for changes of zip code. Zip codes can be used outside of the widget/bloc like:
+* `ZipDropdownMenu` now accepts a `onZipCodeChanged` callback for changes of zip code. Zip codes can be used outside of the widget/bloc like:
     ```dart
     ZipDropdownMenu(
         onZipCodeChanged: (zipCode) {
