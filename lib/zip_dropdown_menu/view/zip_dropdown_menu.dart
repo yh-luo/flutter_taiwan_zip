@@ -20,6 +20,8 @@ class ZipDropdownMenu extends StatelessWidget {
       this.cityWidget,
       this.districtWidget,
       this.onZipCodeChanged,
+      this.onCityChanged,
+      this.onDistrictChanged,
       Key? key})
       : super(key: key);
 
@@ -27,6 +29,8 @@ class ZipDropdownMenu extends StatelessWidget {
   final Widget? cityWidget;
   final Widget? districtWidget;
   final void Function(String zipCode)? onZipCodeChanged;
+  final void Function(String city)? onCityChanged;
+  final void Function(String district)? onDistrictChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +41,8 @@ class ZipDropdownMenu extends StatelessWidget {
         cityWidget: cityWidget,
         districtWidget: districtWidget,
         onZipCodeChanged: onZipCodeChanged,
+        onCityChanged: onCityChanged,
+        onDistrictChanged: onDistrictChanged,
       ),
     );
   }
@@ -48,6 +54,8 @@ class ZipDropdownMenuView extends StatelessWidget {
       this.cityWidget,
       this.districtWidget,
       this.onZipCodeChanged,
+      this.onCityChanged,
+      this.onDistrictChanged,
       Key? key})
       : super(key: key);
 
@@ -55,6 +63,8 @@ class ZipDropdownMenuView extends StatelessWidget {
   final Widget? cityWidget;
   final Widget? districtWidget;
   final void Function(String zipCode)? onZipCodeChanged;
+  final void Function(String city)? onCityChanged;
+  final void Function(String district)? onDistrictChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +74,9 @@ class ZipDropdownMenuView extends StatelessWidget {
       textBaseline: TextBaseline.ideographic,
       children: <Widget>[
         zipWidget ?? ZipField(onZipCodeChanged: onZipCodeChanged),
-        cityWidget ?? const CityDropdownButton(),
-        districtWidget ?? const DistrictDropdownButton(),
+        cityWidget ?? CityDropdownButton(onCityChanged: onCityChanged),
+        districtWidget ??
+            DistrictDropdownButton(onDistrictChanged: onDistrictChanged),
       ],
     );
   }
@@ -99,7 +110,9 @@ class ZipField extends StatelessWidget {
 }
 
 class CityDropdownButton extends StatelessWidget {
-  const CityDropdownButton({Key? key}) : super(key: key);
+  const CityDropdownButton({this.onCityChanged, Key? key}) : super(key: key);
+
+  final void Function(String city)? onCityChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +121,9 @@ class CityDropdownButton extends StatelessWidget {
       child: BlocBuilder<ZipDropdownMenuBloc, ZipDropdownMenuState>(
         buildWhen: (previous, current) => previous.city != current.city,
         builder: (context, state) {
+          if (onCityChanged != null) {
+            onCityChanged!(state.zipCode);
+          }
           return DropdownButton<String>(
             value: state.city,
             key: const Key('ZipDropdownMenuView_city'),
@@ -135,8 +151,9 @@ class CityDropdownButton extends StatelessWidget {
 }
 
 class DistrictDropdownButton extends StatelessWidget {
-  const DistrictDropdownButton({Key? key}) : super(key: key);
-
+  const DistrictDropdownButton({this.onDistrictChanged, Key? key})
+      : super(key: key);
+  final void Function(String district)? onDistrictChanged;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -144,6 +161,9 @@ class DistrictDropdownButton extends StatelessWidget {
       child: BlocBuilder<ZipDropdownMenuBloc, ZipDropdownMenuState>(
         buildWhen: (previous, current) => previous.district != current.district,
         builder: (context, state) {
+          if (onDistrictChanged != null) {
+            onDistrictChanged!(state.zipCode);
+          }
           return DropdownButton<String>(
             value: state.district,
             key: const Key('ZipDropdownMenuView_district'),
