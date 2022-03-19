@@ -1,3 +1,13 @@
+# 0.5.1
+
+**Fix**
+
+* Fix version in `pubspec.yaml`.
+
+**Enhancement**
+
+* Removed "plugin" (插件) from `README.md`.
+
 # 0.5.0
 
 **New**
